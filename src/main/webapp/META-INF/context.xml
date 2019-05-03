@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="" />
+<Context path="/SSH">
+    <Resource 
+        name="jdbc/ssh" 
+        auth="Container" 
+        type="javax.sql.DataSource"
+        maxActive="100"
+        maxIdle="30"
+        maxWait="10000"
+        username="ssh"
+        password="1234"
+        driverClassName="org.apache.derby.jdbc.ClientDriver"
+        url="jdbc:derby://localhost:1527/ssh"
+    />
+</Context>
