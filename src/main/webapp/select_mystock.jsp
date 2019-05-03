@@ -22,22 +22,46 @@
 %>
 <html>
     <head>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Select MyStock</title>
     </head>
-    <body>
-        <%
-            // 利用 while-loop 走訪 record 內容
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String symbol = rs.getString("symbol");
-                double cost = rs.getDouble("cost");
-                int shares = rs.getInt("shares");
-                Date tDate = rs.getDate("tDate");
-                out.println(id + "," + symbol + "," + cost + "," + shares + "," + tDate + "<br>");
-            }
-            // 關閉連線
-            conn.close();
-        %>
+    <body style="padding: 10px">
+        <table class="pure-table pure-table-bordered">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>symbol</th>
+                    <th>cost</th>
+                    <th>shares</th>
+                    <th>tDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String symbol = rs.getString("symbol");
+                        double cost = rs.getDouble("cost");
+                        int shares = rs.getInt("shares");
+                        Date tDate = rs.getDate("tDate");
+                %>
+                <tr>
+                    <td><%=id %></td>
+                    <td><%=symbol %></td>
+                    <td><%=cost %></td>
+                    <td><%=shares %></td>
+                    <td><%=tDate %></td>
+                </tr>
+                <%
+                // 利用 while-loop 走訪 record 內容
+                
+                }
+                // 關閉連線
+                conn.close();
+                %>
+            </tbody>
+        </table>
+        
     </body>
 </html>
