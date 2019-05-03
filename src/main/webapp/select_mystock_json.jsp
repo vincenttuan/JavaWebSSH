@@ -29,7 +29,7 @@
         String symbol = rs.getString("symbol");
         double cost = rs.getDouble("cost");
         int shares = rs.getInt("shares");
-        Date tDate = rs.getDate("tDate");
+        long tDate = rs.getDate("tDate").getTime();
         MyStock myStock = new MyStock(id, symbol, cost, shares, tDate);
         list.add(myStock);
     }

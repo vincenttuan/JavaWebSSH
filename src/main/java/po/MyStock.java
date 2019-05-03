@@ -7,12 +7,12 @@ public class MyStock {
     private String symbol;
     private double cost;
     private int shares;
-    private Date tDate;
+    private long tDate;
 
     public MyStock() {
     }
 
-    public MyStock(int id, String symbol, double cost, int shares, Date tDate) {
+    public MyStock(int id, String symbol, double cost, int shares, long tDate) {
         this.id = id;
         this.symbol = symbol;
         this.cost = cost;
@@ -54,11 +54,11 @@ public class MyStock {
         this.shares = shares;
     }
 
-    public Date gettDate() {
+    public long gettDate() {
         return tDate;
     }
 
-    public void settDate(Date tDate) {
+    public void settDate(long tDate) {
         this.tDate = tDate;
     }
     
