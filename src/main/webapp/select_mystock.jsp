@@ -46,13 +46,13 @@
                         int shares = rs.getInt("shares");
                         Date tDate = rs.getDate("tDate");
                 %>
-                <tr>
-                    <td><%=id %></td>
-                    <td><%=symbol %></td>
-                    <td><%=cost %></td>
-                    <td><%=shares %></td>
-                    <td><%=tDate %></td>
-                </tr>
+                    <tr>
+                        <td><%=id %></td>
+                        <td><%=symbol %></td>
+                        <td><%=cost %></td>
+                        <td><%=shares %></td>
+                        <td><%=tDate %></td>
+                    </tr>
                 <%
                 // 利用 while-loop 走訪 record 內容
                 
