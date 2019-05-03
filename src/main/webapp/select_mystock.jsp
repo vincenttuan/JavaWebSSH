@@ -6,7 +6,7 @@
 <%@page import="java.sql.Connection"%>
 <%
     // 1.建立MySQL資料庫物件實體
-    //Class.forName("org.apache.derby.jdbc.ClientDriver");
+    Class.forName("org.apache.derby.jdbc.ClientDriver");
     // 資料庫連線相關資料
     String url = "jdbc:derby://localhost:1527/ssh";
     String username = "ssh";
