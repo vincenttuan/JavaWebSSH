@@ -59,7 +59,7 @@ public class BaseController extends HttpServlet {
     }
 
     // implement remaining HTTP actions here
-    private class RestRequest {
+    protected class RestRequest {
         // Accommodate two requests, one for all resources, another for a specific
         // resource
         private Pattern regExAllPattern = Pattern.compile("/" + tagName);
