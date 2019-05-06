@@ -67,7 +67,7 @@ public class BaseController extends HttpServlet {
 
         private int id = -1;
 
-        public RestRequest(String pathInfo) throws ServletException {
+        protected RestRequest(String pathInfo) throws ServletException {
             // regex parse pathInfo
             Matcher matcher;
 
