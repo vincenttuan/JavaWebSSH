@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        
+        <script>
+            google.charts.load('current', {
+                callback: drawLineColors,
+                packages: ['corechart']
+            });
+
+            function drawLineColors() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'X');
+                data.addColumn('number', 'Green Team');
+                data.addColumn('number', 'Red Team');
+
+                data.addRows([
+                    [0, 0, 0],
+                    [3, 1700, 1600],
+                    [6, 1800, 1700],
+                    [9, 2500, 2423],
+                    [12, 3000, 2500],
+                    [15, 4700, 5800],
+                    [18, 5200, 5900],
+                    [21, 5500, 6000],
+                    [24, 6000, 6200],
+                    [27, 6800, 6700],
+                    [30, 7500, 7000],
+                    [33, 7800, 8200],
+                    [36, 7900, 9756],
+                    [39, 8000, 10752],
+                    [42, 9000, 13753],
+                    [45, 15000, 17845]
+                ]);
+
+                var options = {
+                    legend: {
+                        position: 'top'
+                    },
+                    enableInteractivity: false,
+                    width: 712,
+                    height: 156,
+                    backgroundColor: {
+                        fill: 'transparent'
+                    },
+                    curveType: 'function',
+                    hAxis: {
+                        title: 'Time'
+                    },
+                    vAxis: {
+                        title: 'Team Gold'
+                    },
+                    colors: ['#005100', '#FF0000']
+                };
+
+                var dataView = new google.visualization.DataView(data);
+                dataView.setColumns([
+                    // reference first column by index
+                    0,
+                    // team Y is better
+                    {
+                        calc: function (data, row) {
+                            var val = data.getValue(row, 2) - data.getValue(row, 1);
+                            if (val > 0) {
+                                return val;
+                            }
+                            return null;
+                        },
+                        type: 'number',
+                        label: 'Blue'
+                    },
+                    // team X is better
+                    {
+                        calc: function (data, row) {
+                            var val = data.getValue(row, 1) - data.getValue(row, 2);
+                            if (val > 0) {
+                                return val;
+                            }
+                            return null;
+                        },
+                        type: 'number',
+                        label: 'Red'
+                    },
+                ]);
+
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                chart.draw(dataView, options);
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="chart_div"></div>
+    </body>
+</html>
