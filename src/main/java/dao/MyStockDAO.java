@@ -2,7 +2,6 @@ package dao;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.Set;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
