@@ -22,22 +22,27 @@ public class MyStockDAO {
         }
     }
     
+    // 全部查詢
     public List<MyStock> queryAll() {
         return null;
     }
     
+    // 查詢單筆
     public MyStock get(int id) {
         return null;
     }
     
+    // 新增
     public int create(MyStock myStock) {
         return 0;
     }
     
+    // 修改
     public int update(MyStock myStock) {
         return 0;
     }
     
+    // 刪除
     public int delete(int id) {
         return 0;
     }
