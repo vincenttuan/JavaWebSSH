@@ -1,7 +1,5 @@
 package po;
 
-import java.util.Date;
-
 public class MyStock {
     private int id;
     private String symbol;
