@@ -29,7 +29,11 @@ public class MyStockService {
     
     // 修改
     public String update(MyStock myStock) {
-        return gson.toJson(dao.update(myStock));
+        if(get(myStock.getId()) != null) {
+            return gson.toJson(dao.update(myStock));
+        } else {
+            return null;
+        }
     }
     
     // 刪除

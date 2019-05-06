@@ -87,6 +87,7 @@ public class MyStockDAO {
             pstmt.setString(1, myStock.getSymbol());
             pstmt.setDouble(2, myStock.getCost());
             pstmt.setInt(3, myStock.getShares());
+            // 利用 java.sql.Date 取得 now
             pstmt.setDate(4, new java.sql.Date(calendar.getTime().getTime()));
             row_count = pstmt.executeUpdate();
         } catch (Exception e) {

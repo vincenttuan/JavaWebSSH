@@ -28,6 +28,7 @@ public class MyStockController extends BaseController {
         service = new MyStockService();
     }
 
+    // 單/多筆查詢
     // http://localhost:8080/SSH/rest/servlet/mystock
     // http://localhost:8080/SSH/rest/servlet/mystock/1/
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -50,7 +51,9 @@ public class MyStockController extends BaseController {
 
     }
     
+    // 新增資料
     // http://localhost:8080/SSH/rest/servlet/mystock/
+    // body : symbol=xxx&cost=xxx&shares=xxx
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/plain;charset=utf-8");
@@ -68,8 +71,10 @@ public class MyStockController extends BaseController {
         }
 
     }
-
+    
+    // 修改資料
     // http://localhost:8080/SSH/rest/servlet/mystock/1
+    // body : symbol=xxx&cost=xxx&shares=xxx
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/plain;charset=utf-8");
@@ -96,7 +101,8 @@ public class MyStockController extends BaseController {
         }
 
     }
-
+    
+    // 刪除資料
     // http://localhost:8080/SSH/rest/servlet/mystock/1
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
