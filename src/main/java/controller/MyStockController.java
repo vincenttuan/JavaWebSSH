@@ -94,7 +94,6 @@ public class MyStockController extends BaseController {
                 MyStock myStock = new MyStock(id, symbol, cost, shares);
                 out.print(service.update(myStock));
             }
-            out.print(restRequest);
         } catch (ServletException e) {
             e.printStackTrace();
             out.println(e.toString());
@@ -117,7 +116,6 @@ public class MyStockController extends BaseController {
             } else {
                 out.print(service.delete(id));
             }
-            out.print(restRequest);
         } catch (ServletException e) {
             e.printStackTrace();
             out.println(e.toString());
