@@ -11,17 +11,26 @@ import javax.sql.DataSource;
 import po.MyStock;
 
 public class MyStockDAO {
-    Context ctx;
-    DataSource ds;
+    private static Context ctx;
+    private static DataSource ds;
     Connection conn;
             
+    static {
+        try {
+            ctx = new InitialContext();
+            ds = (DataSource)ctx.lookup("java:comp/env/jdbc/ssh");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     {
         try {
-            Context ctx = new InitialContext();
-        DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/ssh");
-        Connection conn = ds.getConnection();
+            conn = ds.getConnection();
         } catch (Exception e) {
-        }
+            e.printStackTrace();
+        }   
     }
     
     // 全部查詢
