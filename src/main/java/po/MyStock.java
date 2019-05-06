@@ -9,13 +9,30 @@ public class MyStock {
 
     public MyStock() {
     }
-
+    
+    // 查詢用
     public MyStock(int id, String symbol, double cost, int shares, long tDate) {
         this.id = id;
         this.symbol = symbol;
         this.cost = cost;
         this.shares = shares;
         this.tDate = tDate;
+    }
+    
+    // 修改用
+    public MyStock(int id, String symbol, double cost, int shares) {
+        this.id = id;
+        this.symbol = symbol;
+        this.cost = cost;
+        this.shares = shares;
+    }
+    
+    // 新增用
+    public MyStock(String symbol, double cost, int shares) {
+        this.id = id;
+        this.symbol = symbol;
+        this.cost = cost;
+        this.shares = shares;
     }
     
     

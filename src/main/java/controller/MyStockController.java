@@ -5,19 +5,16 @@
  */
 package controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.Enumeration;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import po.MyStock;
 import services.MyStockService;
 
 @WebServlet("/rest/servlet/*")
@@ -46,6 +43,75 @@ public class MyStockController extends BaseController {
             } else {
                 out.print(service.get(id));
             }
+        } catch (ServletException e) {
+            e.printStackTrace();
+            out.println(e.toString());
+        }
+
+    }
+    
+    // http://localhost:8080/SSH/rest/servlet/mystock/
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/plain;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        try {
+            RestRequest restRequest = new RestRequest(request.getPathInfo());
+            String symbol = request.getParameter("symbol");
+            double cost = Double.parseDouble(request.getParameter("cost"));
+            int shares = Integer.parseInt(request.getParameter("shares"));
+            MyStock myStock = new MyStock(symbol, cost, shares);
+            out.print(service.create(myStock));
+        } catch (ServletException e) {
+            e.printStackTrace();
+            out.println(e.toString());
+        }
+
+    }
+
+    // http://localhost:8080/SSH/rest/servlet/mystock/1
+    protected void doPut(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/plain;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        try {
+            RestRequest restRequest = new RestRequest(request.getPathInfo());
+            int id = restRequest.getId();
+
+            if (id == -1) {
+                out.print("Path invalid !");
+            } else {
+                String args = new BufferedReader(new InputStreamReader(request.getInputStream())).readLine();
+                Map<String, String> map = splitArgs(args);
+                String symbol = map.get("symbol");
+                double cost = Double.parseDouble(map.get("cost"));
+                int shares = Integer.parseInt(map.get("shares"));
+                MyStock myStock = new MyStock(id, symbol, cost, shares);
+                out.print(service.update(myStock));
+            }
+            out.print(restRequest);
+        } catch (ServletException e) {
+            e.printStackTrace();
+            out.println(e.toString());
+        }
+
+    }
+
+    // http://localhost:8080/SSH/rest/servlet/mystock/1
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/plain;charset=utf-8");
+        PrintWriter out = response.getWriter();
+        try {
+            RestRequest restRequest = new RestRequest(request.getPathInfo());
+            int id = restRequest.getId();
+
+            if (id == -1) {
+                out.print("Path invalid !");
+            } else {
+                out.print(service.delete(id));
+            }
+            out.print(restRequest);
         } catch (ServletException e) {
             e.printStackTrace();
             out.println(e.toString());
