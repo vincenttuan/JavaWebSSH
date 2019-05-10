@@ -1,0 +1,35 @@
+<html ng-app="App">
+    <head>
+        <!-- nocache -->
+        <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+        <META HTTP-EQUIV="EXPIRES" CONTENT="0">
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+        <META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 1901 11:12:01 GMT">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>MyStock 我的投資組合管理</title>
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
+        <script>
+            var App = angular.module('App', []);
+            App.controller('AjaxCtrl', function ($scope, $http) {
+                $scope.read = function () {
+                    $http.get('/SSH/rest/servlet/mystock').then(function (res) {
+                        console.log(res.data);
+                        $scope.result = res.data;
+                        //$scope.mystocks = res.data;
+                    });
+                };
+            });
+        </script>
+    </head>
+    <body style="padding: 15px" ng-controller="AjaxCtrl">
+        <a href="http://www.runoob.com/angularjs/angularjs-tutorial.html">Angular 中文教學</a>
+        <form class="pure-form" method="post" >
+            <fieldset>
+                <legend>MyStock 我的投資組合管理</legend>
+                <button type="button" class="pure-button pure-button-primary" ng-click="read()">查詢</button>
+            </fieldset>
+        </form>
+        <div style="height: 30px" ng-model="result">{{result}}</div>
+    </body>
+</html>
