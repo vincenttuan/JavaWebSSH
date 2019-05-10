@@ -73,7 +73,7 @@
                 };
                 
                 // 刪除
-                $scope.del = function () {
+                $scope.delete = function () {
                     $http({
                         method: 'DELETE',
                         url: '/SSH/rest/servlet/mystock/' + $scope.id + "/"
@@ -110,7 +110,7 @@
                 <button type="button" class="pure-button pure-button-primary" ng-click="read()">查詢</button>
                 <button type="button" class="pure-button pure-button-primary" ng-click="create()">新增</button>
                 <button type="button" class="pure-button pure-button-primary" ng-click="update()">修改</button>
-                <button type="button" class="pure-button pure-button-primary" ng-click="del()">刪除</button>
+                <button type="button" class="pure-button pure-button-primary" ng-click="delete()">刪除</button>
                 <button type="button" class="pure-button pure-button-primary" ng-click="reset()">Reset</button>
             </fieldset>
         </form>
