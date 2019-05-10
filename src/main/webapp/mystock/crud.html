@@ -16,7 +16,7 @@
                     $http.get('/SSH/rest/servlet/mystock').then(function (res) {
                         console.log(res.data);
                         $scope.result = res.data;
-                        //$scope.mystocks = res.data;
+                        $scope.mystocks = res.data;
                     });
                 };
             });
@@ -31,5 +31,26 @@
             </fieldset>
         </form>
         <div style="height: 30px" ng-model="result">{{result}}</div>
+        <table class="pure-table pure-table-bordered">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>symbol</th>
+                    <th>cost</th>
+                    <th>shares</th>
+                    <th>tDate</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="x in mystocks">
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.symbol }}</td>
+                    <td>{{ x.cost }}</td>
+                    <td>{{ x.shares }}</td>
+                    <td>{{ x.tDate }}</td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
