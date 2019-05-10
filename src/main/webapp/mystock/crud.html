@@ -71,6 +71,30 @@
                     $scope.cost   = x.cost;
                     $scope.shares = x.shares;
                 };
+                
+                // 刪除
+                $scope.del = function () {
+                    $http({
+                        method: 'DELETE',
+                        url: '/SSH/rest/servlet/mystock/' + $scope.id + "/"
+                    }).success(function (data, status, headers) {
+                        console.log(data);
+                        console.log(status);
+                        $scope.result = data;
+                        $scope.read();
+                        $scope.reset();
+                    }).error(function (data, status, headers) {
+                        // Error
+                    });
+                };
+                
+                // 表單重置
+                $scope.reset = function () {
+                    $scope.id='';
+                    $scope.symbol='';
+                    $scope.cost='';
+                    $scope.shares='';
+                };
             });
         </script>
     </head>
@@ -86,6 +110,8 @@
                 <button type="button" class="pure-button pure-button-primary" ng-click="read()">查詢</button>
                 <button type="button" class="pure-button pure-button-primary" ng-click="create()">新增</button>
                 <button type="button" class="pure-button pure-button-primary" ng-click="update()">修改</button>
+                <button type="button" class="pure-button pure-button-primary" ng-click="del()">刪除</button>
+                <button type="button" class="pure-button pure-button-primary" ng-click="reset()">Reset</button>
             </fieldset>
         </form>
         
