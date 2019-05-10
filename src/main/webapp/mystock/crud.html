@@ -42,6 +42,27 @@
                     });
                 };
                 
+                // 修改
+                $scope.update = function () {
+                    $http({
+                        method: 'PUT',
+                        url: '/SSH/rest/servlet/mystock/' + $scope.id + "/",
+                        data: {
+                            id: $scope.id,
+                            symbol: $scope.symbol,
+                            cost: $scope.cost,
+                            shares: $scope.shares
+                        }
+                    }).success(function (data, status, headers) {
+                        console.log(data);
+                        console.log(status);
+                        $scope.result = data;
+                        $scope.read();
+                    }).error(function (data, status, headers) {
+                        // Error
+                    });
+                };
+                
                 // 取得本地單筆資料
                 $scope.get = function (x) {
                     console.log(x);
@@ -64,6 +85,7 @@
                 <input type="text" placeholder="請輸入買進股數" name="shares" id="shares" ng-model="shares"><p/>
                 <button type="button" class="pure-button pure-button-primary" ng-click="read()">查詢</button>
                 <button type="button" class="pure-button pure-button-primary" ng-click="create()">新增</button>
+                <button type="button" class="pure-button pure-button-primary" ng-click="update()">修改</button>
             </fieldset>
         </form>
         

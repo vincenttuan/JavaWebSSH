@@ -5,6 +5,9 @@
  */
 package controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -94,11 +97,16 @@ public class MyStockController extends BaseController {
                 out.print("Path invalid !");
             } else {
                 String args = new BufferedReader(new InputStreamReader(request.getInputStream())).readLine();
-                Map<String, String> map = splitArgs(args);
-                String symbol = map.get("symbol");
-                double cost = Double.parseDouble(map.get("cost"));
-                int shares = Integer.parseInt(map.get("shares"));
-                MyStock myStock = new MyStock(id, symbol, cost, shares);
+                MyStock myStock = null;
+                if(isJSON(args)) {
+                    myStock = new Gson().fromJson(args, MyStock.class);
+                } else {
+                    Map<String, String> map = splitArgs(args);
+                    String symbol = map.get("symbol");
+                    double cost = Double.parseDouble(map.get("cost"));
+                    int shares = Integer.parseInt(map.get("shares"));
+                    myStock = new MyStock(id, symbol, cost, shares);
+                }
                 out.print(service.update(myStock));
             }
         } catch (ServletException e) {
@@ -128,6 +136,22 @@ public class MyStockController extends BaseController {
             out.println(e.toString());
         }
 
+    }
+    
+    // 判斷是否是 Json 資料格式
+    private boolean isJSON(String jsonString) {
+
+        try {
+            JsonElement jsonElement = new JsonParser().parse(jsonString);
+
+            if (!jsonElement.isJsonObject()) {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
     }
 
 }
