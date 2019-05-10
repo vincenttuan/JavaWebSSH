@@ -12,6 +12,7 @@
         <script>
             var App = angular.module('App', []);
             App.controller('AjaxCtrl', function ($scope, $http) {
+                
                 // 查詢
                 $scope.read = function () {
                     $http.get('/SSH/rest/servlet/mystock').then(function (res) {
@@ -20,6 +21,7 @@
                         $scope.mystocks = res.data;
                     });
                 };
+                
                 // 新增
                 $scope.create = function () {
                     $http({
@@ -38,6 +40,15 @@
                     }).error(function (data, status, headers) {
                         console.log(status);
                     });
+                };
+                
+                // 取得本地單筆資料
+                $scope.get = function (x) {
+                    console.log(x);
+                    $scope.id     = x.id;
+                    $scope.symbol = x.symbol;
+                    $scope.cost   = x.cost;
+                    $scope.shares = x.shares;
                 };
             });
         </script>
@@ -68,7 +79,7 @@
             </thead>
 
             <tbody>
-                <tr ng-repeat="x in mystocks">
+                <tr ng-repeat="x in mystocks" ng-dblclick="get(x)">
                     <td>{{ x.id}}</td>
                     <td>{{ x.symbol}}</td>
                     <td>{{ x.cost}}</td>
