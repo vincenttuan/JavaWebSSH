@@ -29,6 +29,7 @@ public class MyStockController extends BaseController {
     }
     // 門戶洞開
     private void setAccessControlHeaders(HttpServletResponse resp) {
+      //resp.setHeader("Access-Control-Allow-Origin", "http://www.runoob.com");
       resp.setHeader("Access-Control-Allow-Origin", "*");
       resp.setHeader("Access-Control-Allow-Methods", "*");
     }
