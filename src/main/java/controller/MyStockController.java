@@ -27,13 +27,19 @@ public class MyStockController extends BaseController {
         tagName = "mystock";
         service = new MyStockService();
     }
-
+    // 門戶洞開
+    private void setAccessControlHeaders(HttpServletResponse resp) {
+      resp.setHeader("Access-Control-Allow-Origin", "*");
+      resp.setHeader("Access-Control-Allow-Methods", "*");
+    }
     // 單/多筆查詢
     // http://localhost:8080/SSH/rest/servlet/mystock
     // http://localhost:8080/SSH/rest/servlet/mystock/1/
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //analysisURI(request, response);
+        setAccessControlHeaders(response);
+        response.setStatus(HttpServletResponse.SC_OK);
         response.setContentType("text/plain;charset=utf-8");
         PrintWriter out = response.getWriter();
         try {
