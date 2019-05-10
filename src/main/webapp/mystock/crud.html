@@ -12,11 +12,31 @@
         <script>
             var App = angular.module('App', []);
             App.controller('AjaxCtrl', function ($scope, $http) {
+                // 查詢
                 $scope.read = function () {
                     $http.get('/SSH/rest/servlet/mystock').then(function (res) {
                         console.log(res.data);
                         $scope.result = res.data;
                         $scope.mystocks = res.data;
+                    });
+                };
+                // 新增
+                $scope.create = function () {
+                    $http({
+                        method: 'POST',
+                        url: '/SSH/rest/servlet/mystock',
+                        params: {
+                            symbol: $scope.symbol,
+                            cost: $scope.cost,
+                            shares: $scope.shares
+                        }
+                    }).success(function (data, status, headers) {
+                        console.log(data);
+                        console.log(status);
+                        $scope.result = data;
+                        $scope.read();
+                    }).error(function (data, status, headers) {
+                        console.log(status);
                     });
                 };
             });
@@ -27,10 +47,15 @@
         <form class="pure-form" method="post" >
             <fieldset>
                 <legend>MyStock 我的投資組合管理</legend>
+                <input type="text" placeholder="ID 序號" readonly name="id" id="id" ng-model="id"><p/>
+                <input type="text" placeholder="請輸入股票代號" name="symbol" id="symbol" ng-model="symbol"><p/>
+                <input type="text" placeholder="請輸入買進成本" name="cost" id="cost" ng-model="cost"><p/>
+                <input type="text" placeholder="請輸入買進股數" name="shares" id="shares" ng-model="shares"><p/>
                 <button type="button" class="pure-button pure-button-primary" ng-click="read()">查詢</button>
+                <button type="button" class="pure-button pure-button-primary" ng-click="create()">新增</button>
             </fieldset>
         </form>
-        <div style="height: 30px" ng-model="result">{{result}}</div>
+        
         <table class="pure-table pure-table-bordered">
             <thead>
                 <tr>
@@ -44,13 +69,15 @@
 
             <tbody>
                 <tr ng-repeat="x in mystocks">
-                    <td>{{ x.id }}</td>
-                    <td>{{ x.symbol }}</td>
-                    <td>{{ x.cost }}</td>
-                    <td>{{ x.shares }}</td>
-                    <td>{{ x.tDate }}</td>
+                    <td>{{ x.id}}</td>
+                    <td>{{ x.symbol}}</td>
+                    <td>{{ x.cost}}</td>
+                    <td>{{ x.shares}}</td>
+                    <td>{{ x.tDate}}</td>
                 </tr>
             </tbody>
         </table>
+        <p>
+        <div style="height: 30px" ng-model="result">{{result}}</div>
     </body>
 </html>
