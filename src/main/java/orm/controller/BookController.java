@@ -1,18 +1,13 @@
 package orm.controller;
 
 import controller.BaseController;
-import orm.servlet.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import orm.dao.BookDAOImpl;
 import orm.model.Book;
-import services.MyStockService;
 
 @WebServlet("/orm/bookcontroller/*")
 public class BookController extends BaseController {
