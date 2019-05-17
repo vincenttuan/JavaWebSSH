@@ -51,7 +51,13 @@ public class BookDAOImpl implements IBookDAO {
 
     @Override
     public Book get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Configuration cfg = new Configuration().configure();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Book book = session.get(Book.class, id);
+        tx.commit();
+        return book;
     }
 
 }
