@@ -1,4 +1,6 @@
-package orm.model;
+package orm.dao;
+
+import orm.model.Book;
 
 public interface IBookDAO {
     void test();
