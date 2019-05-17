@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import orm.dao.BookDAOImpl;
 import orm.model.Book;
-import po.MyStock;
 
 @WebServlet("/orm/bookcontroller/*")
 public class BookController extends BaseController {
@@ -51,4 +50,5 @@ public class BookController extends BaseController {
 
     }
 
+    
 }
