@@ -1,13 +1,18 @@
 package orm.dao;
 
 import java.util.Set;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import orm.model.Book;
 
 public class BookDAOImpl implements IBookDAO {
+
     public static void main(String[] args) {
         new BookDAOImpl().test();
     }
+
     @Override
     public void test() {
         Configuration cfg = new Configuration().configure();
@@ -20,7 +25,13 @@ public class BookDAOImpl implements IBookDAO {
 
     @Override
     public boolean create(Book book) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Configuration cfg = new Configuration().configure();
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        session.save(book);
+        tx.commit();
+        return true;
     }
 
     @Override
@@ -42,5 +53,5 @@ public class BookDAOImpl implements IBookDAO {
     public Book get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
