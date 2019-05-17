@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!-- 1. 數據庫連接配置 -->
+    <property name="hibernate.connection.datasource">java:comp/env/jdbc/ssh</property>
+    <!-- 2.數據庫方言配置， hibernate在運行的時候，會根據不同的方言生成符合當前數據庫語法的sql -->
+    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+    <!-- 3.自動建表  -->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <!-- 4.透過 jta(預設)/thread 來自動維護 session 開啟與關閉資源 -->
+    <property name="current_session_context_class">thread</property>
+    <!-- 5.不使用二級緩存 -->
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <!-- 6.格式化sql -->
+    <property name="hibernate.format_sql">true</property>
+    <!-- 7.顯示hibernate在運行時候執行的sql語句 -->
+    <property name="show_sql">true</property>
+  </session-factory>
+</hibernate-configuration>
