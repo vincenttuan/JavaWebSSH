@@ -1,14 +1,14 @@
 # JavaWebSSH
 201905 東認 JavaWEB SSH 上課範例
 
--- 客戶資料檔
-CREATE TABLE Customer(
-    cus_id varchar(10) primary key, -- 主鍵(客戶代號)
-    cus_name varchar(50) not null, -- (客戶名字)
-    cus_ts timestamp default current_timestamp -- (建檔時間)
-);
+-- 客戶資料檔<br>
+CREATE TABLE Customer(<br>
+    cus_id varchar(10) primary key, -- 主鍵(客戶代號)<br>
+    cus_name varchar(50) not null, -- (客戶名字)<br>
+    cus_ts timestamp default current_timestamp -- (建檔時間)<br>
+);<br>
 
--- Foreign Key constraint in Derby
+-- Foreign Key constraint in Derby<br>
 
 -- 訂單主檔
 CREATE TABLE OrderMaster(
